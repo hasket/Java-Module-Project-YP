@@ -2,7 +2,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Product {
-
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RESET = "\u001B[0m";
     public static void products(int humans) {
         Scanner scanner = new Scanner(System.in);
         double productPrice = 0.00f;
@@ -17,12 +18,12 @@ public class Product {
             try {
                 // вызывал конструктор parseDouble типа Double и перевожу строку в double
                 // Сам я не додумался, а за меня додумался интернет
-                productPrice = Double.parseDouble(scanner.next());
+                productPrice = Double.parseDouble(scanner.next().replace(",", "."));
                 if (productPrice > 0) {
                     productsMap.put(productName, productPrice);
                     System.out.println("Товар успешно добавлен\n");
 
-                    System.out.print("Желаете добавить ещё товар? \n");
+                    System.out.print("Желаете добавить ещё товар?(Введите да, нет, завершить) \n");
                     String wishQuestion = scanner.next();
 
                     if (wishQuestion.equalsIgnoreCase("завершить") ||
@@ -31,11 +32,13 @@ public class Product {
                         break;
                     }
                 } else {
-                    System.out.println("Ёкарный бабай, шнурок, когда последний раз за " +
-                            "твой кофе заправка платила?");
+                    //Моя девушка сказала, раз эт неправильно, то почему оно не красится=)
+                    // пользователю, говорит, непонятно, ошибка это или нет
+                    System.out.println(ANSI_YELLOW + "Ёкарный бабай, шнурок, " +
+                            "когда последний раз за " + "твой кофе заправка платила?" + ANSI_RESET);
                 }
             } catch (Exception e) {
-                System.out.println("Ёкарный бабай, мужики, как должно выглядеть число то?");
+                System.err.println("Ёкарный бабай, мужики, как должно выглядеть число то?");
             }
 
 
