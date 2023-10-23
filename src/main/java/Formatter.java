@@ -1,7 +1,17 @@
 import static java.lang.Math.floor;
+
+import java.util.Arrays;
+
 public class Formatter {
-    String Formatter(double price){
-        int modPrice = (int) (floor(price) % 10);
+    String Formatter(double price) {
+        int modPrice = (int) (floor(price));
+        int[] exceptNumbres = {111, 112, 113, 114};
+        for (int num : exceptNumbres) {
+            if (num == modPrice) {
+                return "рублей";
+            }
+        }
+        modPrice = modPrice % 10;
 // Это студия такой красивый формат(котлин стайл)
 // привела, сам не догадался =(
         return switch (modPrice) {
@@ -13,3 +23,4 @@ public class Formatter {
         };
     }
 }
+
